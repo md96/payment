@@ -17,13 +17,14 @@ pipeline {
             }
         }
 
-        stage('Build') {
-            steps {
-                 powershell '''
-                docker build -t $env:DOCKER_IMAGE .
-                docker run -d -p 8080:8080 $env:DOCKER_IMAGE
-                '''
-            }
-        }
+        stage('Check OS') {
+  steps {
+    sh 'uname -a'  // for Linux agents
+    // or
+    bat 'ver'      // for Windows agents
+  }
+}
+
+       
     }
 }
