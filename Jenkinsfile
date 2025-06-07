@@ -21,7 +21,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                    println 'Hi Welcome to Jenkins'
+                    println 'Checking Jenkins whether will it update or not '
             }
         }
     }
