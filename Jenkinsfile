@@ -19,8 +19,8 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'chmod +x build.sh'
-                sh './build.sh'
+              bat '"C:\\Program Files (x86)\\Docker\\Docker\\resources\\bin\\docker.exe" build -t payment .'
+                
             }
         }
     }
