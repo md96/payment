@@ -36,6 +36,7 @@ pipeline {
 
         stage('Docker Build & Run') {
             steps {
+                sh 'mvn clean package'
                 sh 'docker build -t payment .'
                 sh 'docker images'
                 sh 'docker run -d -p 8081:8080 payment'
