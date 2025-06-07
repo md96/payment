@@ -18,20 +18,17 @@ pipeline {
         }
 
 
-
-
-
-
-
-        stage('Docker Build & Run') {
+     stages {
             steps {
-                
-                sh 'docker build -t payment .'
-                sh 'docker images'
-                sh 'docker run -d -p 8081:8080 payment'
-                sh 'docker ps'
-                 sh 'docker logs $(docker ps -lq)'
-                 }
+                chmod +x build.sh
+                ./build.sh
             }
+        }
+
+
+
+
+
+
     }
 }
