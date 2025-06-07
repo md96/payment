@@ -21,8 +21,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'chmod +x build.sh'
-                sh './build.sh'
+               println 'Hello from Groovy in Jenkins'
             }
         }
     }
