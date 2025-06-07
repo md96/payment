@@ -19,7 +19,10 @@ pipeline {
 
         stage('Build') {
             steps {
-                 powershell 'build.ps1'
+                 powershell '''
+                docker build -t $env:DOCKER_IMAGE .
+                docker run -d -p 8080:8080 $env:DOCKER_IMAGE
+                '''
             }
         }
     }
