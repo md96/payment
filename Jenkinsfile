@@ -21,7 +21,7 @@ pipeline {
 
         stage('Build') {
             steps {
-               println 'Hello from Groovy in Jenkins'
+                    println 'Hi Welcome to Jenkins'
             }
         }
     }
