@@ -1,6 +1,15 @@
 pipeline {
     agent any
 
+    tools {
+        maven 'Maven 3.9.5' // Must match name in Jenkins → Global Tool Configuration
+        jdk 'Java 17'       // Same here
+    }
+
+    environment {
+        DOCKER_IMAGE = 'payment'
+    }
+
     stages {
         stage('Clone') {
             steps {
@@ -8,19 +17,22 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Build') {
             steps {
-                script {
-                    docker.build("payment")
-                }
+                sh 'mvn clean package -DskipTests'
             }
         }
 
-        stage('Run Container') {
+        stage('Test') {
             steps {
-                script {
-                    docker.image("payment").run()
-                }
+                sh 'mvn test'
+            }
+        }
+
+        stage('Docker Build & Run') {
+            steps {
+                sh 'docker build -t $DOCKER_IMAGE .'
+                sh 'docker run -d -p 8081:8081 $DOCKER_IMAGE'
             }
         }
     }
