@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven 3.9.5' // Must match name in Jenkins → Global Tool Configuration
-        jdk 'Java 17'       // Same here
+        maven 'Maven 3.9.5' // Must match Jenkins global tool config
+        jdk 'Java 17'       // Must match Jenkins global tool config
     }
 
     environment {
@@ -17,18 +17,11 @@ pipeline {
             }
         }
 
-
-     stages {
+        stage('Build') {
             steps {
-                chmod +x build.sh
-                ./build.sh
+                sh 'chmod +x build.sh'
+                sh './build.sh'
             }
         }
-
-
-
-
-
-
     }
 }
