@@ -17,7 +17,7 @@ public class PaymentApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PaymentApplication.class, args);
-		System.out.println("Inside Payment  for checking  ");
+		System.out.println("Inside Payment for jenkin checking   ");
 	}
 
 @GetMapping("/{id}")
