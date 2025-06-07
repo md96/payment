@@ -20,6 +20,7 @@ pipeline {
         stage('Build and Run Docker') {
             steps {
                 bat 'docker build -t payment .'
+                bat 'docker run -d -p 8081:8080 payment'
             }
         }
     }
