@@ -31,8 +31,8 @@ pipeline {
 
         stage('Docker Build & Run') {
             steps {
-                sh 'docker build -t $DOCKER_IMAGE .'
-                sh 'docker run -d -p 8081:8080 $DOCKER_IMAGE'
+                sh 'docker build -t payment .'
+                sh 'docker run -d -p 8081:8080 payment'
             }
         }
     }
