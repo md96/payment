@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven 3.9.5' // Must match Jenkins global tool config
-        jdk 'Java 17'       // Must match Jenkins global tool config
+        maven 'Maven 3.9.5'  // Must match Jenkins global tool config
+        jdk 'Java 17'        // Must match Jenkins global tool config
     }
 
     environment {
@@ -17,11 +17,13 @@ pipeline {
             }
         }
 
-        
-
-        stage('Build') {
+        stage('Build and Run Docker') {
             steps {
-                    println 'Checking Jenkins whether will it update or not '
+                sh '''
+                    docker build -t ${DOCKER_IMAGE} .
+                    docker run -d -p 8080:8080 ${DOCKER_IMAGE}
+                '''
+                echo 'Docker build and run commands executed'
             }
         }
     }
