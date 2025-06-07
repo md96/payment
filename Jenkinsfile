@@ -19,11 +19,7 @@ pipeline {
 
         stage('Build and Run Docker') {
             steps {
-                sh '''
-                    docker build -t ${DOCKER_IMAGE} .
-                    docker run -d -p 8080:8080 ${DOCKER_IMAGE}
-                '''
-                echo 'Docker build and run commands executed'
+                bat 'docker build -t payment .'
             }
         }
     }
