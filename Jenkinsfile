@@ -10,10 +10,9 @@ pipeline {
         DOCKER_IMAGE = 'payment'
     }
 
-    stages {
-        stage('Clone') {
-            steps {
-                git 'https://github.com/md96/payment.git'
+    stage('Clone') {
+        steps {
+        git branch: 'main', url: 'https://github.com/md96/payment.git'
             }
         }
 
