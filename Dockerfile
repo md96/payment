@@ -1,11 +1,14 @@
-# Use OpenJDK image
-FROM openjdk:17-jdk-alpine
+# Use official OpenJDK runtime as a parent image
+FROM openjdk:17-jdk-slim
 
-# Set working directory
+# Set a working directory inside the container
 WORKDIR /app
 
-# Copy JAR file to container
+# Copy the jar file from your local machine into the container
 COPY target/payment-0.0.1-SNAPSHOT.jar app.jar
 
-# Command to run the app
+# Expose the port your app listens on (example 8080)
+EXPOSE 8081
+
+# Run the jar file
 ENTRYPOINT ["java", "-jar", "app.jar"]
